@@ -1,0 +1,1 @@
+So here is what I did to refactor it and the type of pattern I chose
