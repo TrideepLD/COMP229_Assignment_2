@@ -28,13 +28,9 @@ public abstract class Actor {
 
     public void setLocation(Cell loc){
         this.loc = loc;
-        if (this.loc.row % 2 == 0){
-            this.strat = new RandomMove();
-        } else {
-            this.strat = new LeftMostMove();
-        }
-        if (this.loc.movementCost() == 1000) {
-            this.strat = new NoMove();
+        this.strat = new RandomMove();
+        if (this.loc.movementCost() == 10000) {
+            return;
         }
         setPoly();
         

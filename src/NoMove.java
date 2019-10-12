@@ -4,7 +4,8 @@ public class NoMove implements MoveStrategy {
 
     @Override
     public Cell chooseNextLoc(List<Cell> possibleLocs) {
-        return possibleLocs.get(0);
+        int i = 0;
+        return possibleLocs.get(i);
     }
 
     @Override

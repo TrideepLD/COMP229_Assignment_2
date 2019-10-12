@@ -115,8 +115,8 @@ public class Stage {
                 for (Cell c : cellOverlay) {
                     if (c.contains(x, y)) {
                         if (c.movementCost() == 10000 || c.description == "waterway") {
-                            currentState = State.ChoosingActor;
                             System.out.println("You are not moses.");
+                            return;
                         }
                         clicked = Optional.of(c);
                         
