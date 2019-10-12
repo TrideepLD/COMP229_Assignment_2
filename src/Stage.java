@@ -2,6 +2,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Color;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class Stage {
     Grid grid;
@@ -107,7 +108,15 @@ public class Stage {
                     currentState = State.SelectingMenuItem;
                     menuOverlay.add(new MenuItem("Exit Menu", x, y, () -> currentState = State.ChoosingActor));
                     menuOverlay.add(new MenuItem("End Turn", x, y+MenuItem.height, () -> currentState = State.CPUMoving));
-                    menuOverlay.add(new MenuItem("End Game", x, y+MenuItem.height*2, () -> System.exit(0)));
+                    menuOverlay.add(new MenuItem("End Game", x, y+MenuItem.height*2, () -> {
+                        // Object[] options = { "OK", "CANCEL" };
+                        int confirmed = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "EXIT WARNING", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                        if (confirmed == JOptionPane.YES_OPTION) {
+                            System.exit(0);
+                        }
+                        currentState = State.ChoosingActor;
+                    }));
                 }
                 break;
             case SelectingNewLocation:
@@ -115,7 +124,8 @@ public class Stage {
                 for (Cell c : cellOverlay) {
                     if (c.contains(x, y)) {
                         if (c.movementCost() == 10000 || c.description == "waterway") {
-                            System.out.println("You are not moses.");
+                            JOptionPane.showMessageDialog(null, "As unfortunate as it may seem, you are not Moses or Naruto or a Boat. Your characters are aquaphobic and can't walk on water nor can they swim.", 
+                            "Error", JOptionPane.INFORMATION_MESSAGE);
                             return;
                         }
                         clicked = Optional.of(c);
@@ -136,7 +146,14 @@ public class Stage {
                     }));
                     menuOverlay.add(new MenuItem("Exit Menu", x, y+MenuItem.height, () -> currentState = State.ChoosingActor));
                     menuOverlay.add(new MenuItem("End Turn", x, y+MenuItem.height*2, () -> currentState = State.CPUMoving));
-                    menuOverlay.add(new MenuItem("End Game", x, y+MenuItem.height*3, () -> System.exit(0)));
+                    menuOverlay.add(new MenuItem("End Game", x, y+MenuItem.height*3, () -> {
+                        int exit = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit the program?", "EXIT WARNING", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+
+                        if (exit == JOptionPane.YES_OPTION) {
+                            System.exit(0);
+                        }
+                        currentState = State.ChoosingActor;
+                    }));
                     currentState = State.SelectingMenuItem;
                 }
                 
