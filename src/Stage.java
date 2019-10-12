@@ -82,7 +82,6 @@ public class Stage {
             mi.paint(g);
         }
 
-
     }
 
     public List<Cell> getClearRadius(Cell from, int size, boolean considerCost){
@@ -133,8 +132,6 @@ public class Stage {
                     }
                     
                 }
-                //Something here which doesnt allow for movement on water.
-
                 if (clicked.isPresent() && actorInAction.isPresent()) {
                     cellOverlay = new ArrayList<Cell>();
                     actorInAction.get().setLocation(clicked.get());
@@ -193,4 +190,6 @@ public class Stage {
         }
         return Optional.empty();
     }
+
+
 }

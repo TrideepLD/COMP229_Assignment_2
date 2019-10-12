@@ -45,7 +45,7 @@ class StageReader {
                     }else if (value.equals("bunny red")){
                         stage.actors.add(new Rabbit(c, 1.0f));
                     }else if (value.equals("bunny blue")){
-                        stage.actors.add(new Rabbit(c, 0.0f));
+                        stage.actors.add(new BlueRabbit(c, 0.0f));
                     }
                 }
             }

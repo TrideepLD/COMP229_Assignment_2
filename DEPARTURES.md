@@ -1,1 +1,2 @@
-So here is what I did to refactor it and the type of pattern I chose
+Did not departure. Choose State Pattern as is in Head First Design Pattern Textbook.
+

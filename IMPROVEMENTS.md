@@ -19,3 +19,5 @@ Prompts
     Added a prompt to allow users to decide if they wanted to exit game or keep playing. What I mean by this is when you click "End Game" It will ask you if you are sure about exiting the program.
         Bug: You cannot fire if you click end game or end turn.
     Added information prompt that tells users that they cannot move actors on water.
+
+Removed LeftMostMove(); call as those buggers would just try to move into the water. Now they randomly move.
