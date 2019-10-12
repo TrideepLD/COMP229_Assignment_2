@@ -33,7 +33,11 @@ public abstract class Actor {
         } else {
             this.strat = new LeftMostMove();
         }
+        if (this.loc.movementCost() == 1000) {
+            this.strat = new NoMove();
+        }
         setPoly();
+        
     }
 
     public void makeRedder(float amt){

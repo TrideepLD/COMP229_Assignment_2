@@ -114,9 +114,17 @@ public class Stage {
                 Optional<Cell> clicked = Optional.empty();
                 for (Cell c : cellOverlay) {
                     if (c.contains(x, y)) {
+                        if (c.movementCost() == 10000 || c.description == "waterway") {
+                            currentState = State.ChoosingActor;
+                            System.out.println("You are not moses.");
+                        }
                         clicked = Optional.of(c);
+                        
                     }
+                    
                 }
+                //Something here which doesnt allow for movement on water.
+
                 if (clicked.isPresent() && actorInAction.isPresent()) {
                     cellOverlay = new ArrayList<Cell>();
                     actorInAction.get().setLocation(clicked.get());
@@ -126,10 +134,12 @@ public class Stage {
                         cellOverlay.remove(actorInAction.get().loc);
                             currentState = State.SelectingTarget;
                     }));
-                    menuOverlay.add(new MenuItem("Exit Menu", x, y, () -> currentState = State.ChoosingActor));
-                    menuOverlay.add(new MenuItem("End Turn", x, y+MenuItem.height, () -> currentState = State.CPUMoving));
+                    menuOverlay.add(new MenuItem("Exit Menu", x, y+MenuItem.height, () -> currentState = State.ChoosingActor));
+                    menuOverlay.add(new MenuItem("End Turn", x, y+MenuItem.height*2, () -> currentState = State.CPUMoving));
+                    menuOverlay.add(new MenuItem("End Game", x, y+MenuItem.height*3, () -> System.exit(0)));
                     currentState = State.SelectingMenuItem;
-                } 
+                }
+                
                 break;
             case SelectingMenuItem:
                 for(MenuItem mi : menuOverlay){

@@ -9,6 +9,6 @@ class Water extends Cell {
 
     @Override
     public int movementCost() {
-        return 1000;
+        return 10000;
     }
 }
